@@ -1,21 +1,23 @@
-class User < ActiveRecord::Base
+class User < ActiveRecord::Base 
+  has_many :heroes
+  has_many :monsters
+  has_many :games
 
   validates :user_name, presence: true
   validates :email, uniqueness: true
   validates :password_hash, presence: true
 
   def password
-    @password ||= BCrypt::Password.new(password_hash)
+    @password ||= Password.new(hashed_password)
   end
 
   def password=(new_password)
-    @password = BCrypt::Password.create(new_password)
-    self.password_hash = @password
+    @password = Password.create(new_password)
+    self.hashed_password = @password
   end
 
-  def self.authenticate(email, password)
-  	valid_user = User.find_by(email: email)
-  	valid_user.password == password ? valid_user : nil
+  def authenticate(input_email, input_password)
+    self.email == input_email && self.password == input_password
   end
 
 end
