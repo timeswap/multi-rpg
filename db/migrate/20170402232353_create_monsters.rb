@@ -7,5 +7,6 @@ class CreateMonsters < ActiveRecord::Migration
   		t.string :speed
 
   		t.timestamps
+    end
   end
 end
