@@ -1,4 +1,54 @@
-<center>
-<div class="container">
-  <h1>Peer to peer fantasy deathmeatch using Pubnub</h1>
-</center>
+<h2>How to Play</h2>
+
+<p><strong>You (X):</strong>
+  <ol>
+    <li>Stay on this browser</li>
+    <li>Play when your opponent is ready</li>
+  </ol>
+</p>
+
+<p><strong>Your opponent (O):</strong>
+  <ol>
+    <li>Open an another browser tab or window.</li>
+    <li>In the new browser tab or window, go to: <span class="query"><span id="gameIdQuery"></span></span>
+    </li>
+  </ol>
+</p>
+
+
+<section class="game">
+  <div class="col">
+    &nbsp;
+  </div>
+
+  <table border="1">
+    <tr>
+      <td data-position="1-1" height="50" width="50" align="center">&nbsp;</td>
+      <td data-position="1-2" height="50" width="50" align="center">&nbsp;</td>
+      <td data-position="1-3" height="50" width="50" align="center">&nbsp;</td>
+    </tr>
+    <tr>
+      <td data-position="2-1" height="50" width="50" align="center">&nbsp;</td>
+      <td data-position="2-2" height="50" width="50" align="center">&nbsp;</td>
+      <td data-position="2-3" height="50" width="50" align="center">&nbsp;</td>
+    </tr>
+    <tr>
+      <td data-position="3-1" height="50" width="50" align="center">&nbsp;</td>
+      <td data-position="3-2" height="50" width="50" align="center">&nbsp;</td>
+      <td data-position="3-3" height="50" width="50" align="center">&nbsp;</td>
+    </tr>
+  </table>
+
+  <div class="col">
+    <div id="tictactoe" class="disabled"></div>
+  </div>
+
+  <div class="col">
+    Game ID: <strong id="gameId"></strong>
+    <br> You: <span id="you"></span>
+    <br>
+    <span id="whosTurn">It is your turn!</span>
+  </div>
+
+</section>
+
