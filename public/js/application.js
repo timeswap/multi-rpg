@@ -1,4 +1,4 @@
-(function() {
+$(function() {
 
   // leftArrow = keyCode 37, upArrow = keyCode 38
   // rightArrow = keyCode 39, downArrow = keyCode 40
@@ -86,17 +86,45 @@
     },
   });
 
+  // Simulates clicking a key
+  function fireKey(el, key) {
+      if (document.createEventObject) {
+          var eventObj = document.createEventObject();
+          eventObj.keyCode = key;
+          el.fireEvent("onkeydown", eventObj);
+      } else if (document.createEvent) {
+          var eventObj = document.createEvent("Events");
+          eventObj.initEvent("keydown", true, true);
+          eventObj.which = key;
+          eventObj.keyCode = key;
+          el.dispatchEvent(eventObj);
+      }
+  }
+
   function publishPosition(player, position) {
     pubnub.publish({
       channel: channel,
-      message: {
-        player: player,
-        position: position
-      },
-      callback: function(m) {
-        console.log(m);
+      message : function(message){
+        if (message.type == "button") {
+          switch(message.data){
+            case "UP":
+              fireKey(el, 38);  // Up Arrow Key
+              break;
+            case "DOWN":
+              fireKey(el, 40);  // Down Arrow Key
+              break;
+            case "LEFT":
+              fireKey(el, 37);  // Left Arrow Key
+              break;
+            case "RIGHT":
+              fireKey(el, 39);  // Right Arrow Key
+              break;
+            default:
+              break;
+          }
+        }
       }
-    });
+    })
   }
 
   function getGameId(){
@@ -200,3 +228,4 @@
   }
 
 })();
+}
